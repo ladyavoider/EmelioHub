@@ -5,9 +5,9 @@ screenGui.ResetOnSpawn = false
 
 local windowFrame = Instance.new("Frame")
 windowFrame.Name = "Window"
-windowFrame.Size = UDim2.new(0,  400,  0,  300)
-windowFrame.Position = UDim2.new(0.5,  -200,  0.5,  -150)
-windowFrame.BackgroundColor3 = Color3.fromRGB(30,  30,  30)
+windowFrame.Size = UDim2.new(0,   400,   0,   300)
+windowFrame.Position = UDim2.new(0.5,   -200,   0.5,   -150)
+windowFrame.BackgroundColor3 = Color3.fromRGB(30,   30,   30)
 windowFrame.BorderSizePixel = 0
 windowFrame.Active = true
 windowFrame.Draggable = true
@@ -15,18 +15,18 @@ windowFrame.Parent = screenGui
 
 local titleBar = Instance.new("Frame")
 titleBar.Name = "TitleBar"
-titleBar.Size = UDim2.new(1,  0,  0,  30)
-titleBar.Position = UDim2.new(0,  0,  0,  0)
-titleBar.BackgroundColor3 = Color3.fromRGB(40,  40,  40)
+titleBar.Size = UDim2.new(1,   0,   0,   30)
+titleBar.Position = UDim2.new(0,   0,   0,   0)
+titleBar.BackgroundColor3 = Color3.fromRGB(40,   40,   40)
 titleBar.Parent = windowFrame
 
 local titleText = Instance.new("TextLabel")
 titleText.Name = "Title"
-titleText.Size = UDim2.new(1,  -90,  1,  0)
-titleText.Position = UDim2.new(0,  10,  0,  0)
+titleText.Size = UDim2.new(1,   -90,   1,   0)
+titleText.Position = UDim2.new(0,   10,   0,   0)
 titleText.BackgroundTransparency = 1
-titleText.Text = "My Application"
-titleText.TextColor3 = Color3.fromRGB(255,  255,  255)
+titleText.Text = "Blox Fruit Hub"
+titleText.TextColor3 = Color3.fromRGB(255,   255,   255)
 titleText.TextSize = 16
 titleText.Font = Enum.Font.SourceSansSemibold
 titleText.TextXAlignment = Enum.TextXAlignment.Left
@@ -34,38 +34,38 @@ titleText.Parent = titleBar
 
 local minimizeButton = Instance.new("TextButton")
 minimizeButton.Name = "MinimizeButton"
-minimizeButton.Size = UDim2.new(0,  20,  0,  20)
-minimizeButton.Position = UDim2.new(1,  -55,  0,  5)
-minimizeButton.BackgroundColor3 = Color3.fromRGB(70,  70,  70)
+minimizeButton.Size = UDim2.new(0,   20,   0,   20)
+minimizeButton.Position = UDim2.new(1,   -55,   0,   5)
+minimizeButton.BackgroundColor3 = Color3.fromRGB(70,   70,   70)
 minimizeButton.Text = "_"
-minimizeButton.TextColor3 = Color3.fromRGB(255,  255,  255)
+minimizeButton.TextColor3 = Color3.fromRGB(255,   255,   255)
 minimizeButton.TextSize = 14
 minimizeButton.Font = Enum.Font.SourceSansBold
 minimizeButton.Parent = titleBar
 
 local closeButton = Instance.new("TextButton")
 closeButton.Name = "CloseButton"
-closeButton.Size = UDim2.new(0,  20,  0,  20)
-closeButton.Position = UDim2.new(1,  -30,  0,  5)
-closeButton.BackgroundColor3 = Color3.fromRGB(200,  0,  0)
+closeButton.Size = UDim2.new(0,   20,   0,   20)
+closeButton.Position = UDim2.new(1,   -30,   0,   5)
+closeButton.BackgroundColor3 = Color3.fromRGB(200,   0,   0)
 closeButton.Text = "X"
-closeButton.TextColor3 = Color3.fromRGB(255,  255,  255)
+closeButton.TextColor3 = Color3.fromRGB(255,   255,   255)
 closeButton.TextSize = 14
 closeButton.Font = Enum.Font.SourceSansBold
 closeButton.Parent = titleBar
 
 local tabContainer = Instance.new("Frame")
 tabContainer.Name = "TabContainer"
-tabContainer.Size = UDim2.new(1,  0,  0,  40)
-tabContainer.Position = UDim2.new(0,  0,  0,  30)
-tabContainer.BackgroundColor3 = Color3.fromRGB(50,  50,  50)
+tabContainer.Size = UDim2.new(1,   0,   0,   40)
+tabContainer.Position = UDim2.new(0,   0,   0,   30)
+tabContainer.BackgroundColor3 = Color3.fromRGB(50,   50,   50)
 tabContainer.BorderSizePixel = 0
 tabContainer.Parent = windowFrame
 
 local contentArea = Instance.new("Frame")
 contentArea.Name = "ContentArea"
-contentArea.Size = UDim2.new(1,  0,  1,  -70)
-contentArea.Position = UDim2.new(0,  0,  0,  70)
+contentArea.Size = UDim2.new(1,   0,   1,   -70)
+contentArea.Position = UDim2.new(0,   0,   0,   70)
 contentArea.BackgroundTransparency = 1
 contentArea.Parent = windowFrame
 
@@ -73,66 +73,66 @@ local tabs = {}
 local currentTab = nil
 local isMinimized = false
 
-minimizeButton.MouseButton1Click:Connect(function()
+minimizeButton.MouseButton1Click: Connect(function()
     isMinimized = not isMinimized
     if isMinimized then
         contentArea.Visible = false
         tabContainer.Visible = false
-        windowFrame.Size = UDim2.new(0,  400,  0,  30)
-        minimizeButton.Text = "□"
+        windowFrame.Size = UDim2.new(0,   400,   0,   30)
+        minimizeButton.Text = ""
     else
         contentArea.Visible = true
         tabContainer.Visible = true
-        windowFrame.Size = UDim2.new(0,  400,  0,  300)
+        windowFrame.Size = UDim2.new(0,   400,   0,   300)
         minimizeButton.Text = "_"
     end
 end)
 
-closeButton.MouseButton1Click:Connect(function()
-    screenGui:Destroy()
+closeButton.MouseButton1Click: Connect(function()
+    screenGui: Destroy()
 end)
 
 local function createTab(name)
     local tabButton = Instance.new("TextButton")
     tabButton.Name = name .. "Tab"
-    tabButton.Size = UDim2.new(0,  100,  1,  -10)
-    tabButton.Position = UDim2.new(0,  10 + (#tabs * 110),  0,  5)
-    tabButton.BackgroundColor3 = Color3.fromRGB(70,  70,  70)
+    tabButton.Size = UDim2.new(0,   100,   1,   -10)
+    tabButton.Position = UDim2.new(0,   10 + (#tabs * 110),   0,   5)
+    tabButton.BackgroundColor3 = Color3.fromRGB(70,   70,   70)
     tabButton.Text = name
-    tabButton.TextColor3 = Color3.fromRGB(200,  200,  200)
+    tabButton.TextColor3 = Color3.fromRGB(200,   200,   200)
     tabButton.TextSize = 14
     tabButton.Font = Enum.Font.SourceSans
     tabButton.Parent = tabContainer
     
     local tabContent = Instance.new("Frame")
     tabContent.Name = name .. "Content"
-    tabContent.Size = UDim2.new(1,  -20,  1,  -20)
-    tabContent.Position = UDim2.new(0,  10,  0,  10)
+    tabContent.Size = UDim2.new(1,   -20,   1,   -20)
+    tabContent.Position = UDim2.new(0,   10,   0,   10)
     tabContent.BackgroundTransparency = 1
     tabContent.Visible = false
     tabContent.Parent = contentArea
     
     local uiStroke = Instance.new("UIStroke")
-    uiStroke.Color = Color3.fromRGB(100,  100,  100)
+    uiStroke.Color = Color3.fromRGB(100,   100,   100)
     uiStroke.Thickness = 1
     uiStroke.Parent = tabButton
     
     local uiCorner = Instance.new("UICorner")
-    uiCorner.CornerRadius = UDim.new(0,  5)
+    uiCorner.CornerRadius = UDim.new(0,   5)
     uiCorner.Parent = tabButton
     
     tabs[name] = {
-        button = tabButton, 
+        button = tabButton,  
         content = tabContent
     }
     
-    tabButton.MouseButton1Click:Connect(function()
+    tabButton.MouseButton1Click: Connect(function()
         if currentTab then
-            tabs[currentTab].button.BackgroundColor3 = Color3.fromRGB(70,  70,  70)
+            tabs[currentTab].button.BackgroundColor3 = Color3.fromRGB(70,   70,   70)
             tabs[currentTab].content.Visible = false
         end
         
-        tabButton.BackgroundColor3 = Color3.fromRGB(90,  90,  90)
+        tabButton.BackgroundColor3 = Color3.fromRGB(90,   90,   90)
         tabContent.Visible = true
         currentTab = name
     end)
@@ -143,358 +143,374 @@ end
 local mainTab = createTab("Main")
 local settingsTab = createTab("Settings")
 
-local espEnabled = false
-local boxESPEnabled = true
-local nameESPEnabled = true
-local distanceESPEnabled = true
-local espObjects = {}
+-- Autofarm Variables
+local autofarmEnabled = false
+local fastAttackEnabled = false
+local bringMobsEnabled = false
+local selectedMob = "Bandit"
+local farmDistance = 50
 
-local function createESP(player)
-    if player == game.Players.LocalPlayer then return end
-    
-    local espFolder = Instance.new("Folder")
-    espFolder.Name = player.Name .. "_ESP"
-    
-    local box = Instance.new("BoxHandleAdornment")
-    box.Name = "Box"
-    box.Size = Vector3.new(4,  6,  1)
-    box.Color3 = Color3.fromRGB(255,  0,  0)
-    box.Transparency = 0.5
-    box.ZIndex = 10
-    box.AlwaysOnTop = true
-    box.Visible = false
-    box.Parent = espFolder
-    
-    local nameTag = Instance.new("BillboardGui")
-    nameTag.Name = "NameTag"
-    nameTag.Size = UDim2.new(0,  100,  0,  50)
-    nameTag.StudsOffset = Vector3.new(0,  3,  0)
-    nameTag.AlwaysOnTop = true
-    nameTag.Enabled = false
-    
-    local nameText = Instance.new("TextLabel")
-    nameText.Size = UDim2.new(1,  0,  1,  0)
-    nameText.BackgroundTransparency = 1
-    nameText.TextColor3 = Color3.fromRGB(255,  255,  255)
-    nameText.TextStrokeTransparency = 0
-    nameText.TextSize = 14
-    nameText.Font = Enum.Font.SourceSansBold
-    nameText.Text = player.Name
-    nameText.Parent = nameTag
-    
-    nameTag.Parent = espFolder
-    
-    local distanceTag = Instance.new("BillboardGui")
-    distanceTag.Name = "DistanceTag"
-    distanceTag.Size = UDim2.new(0,  100,  0,  50)
-    distanceTag.StudsOffset = Vector3.new(0,  2,  0)
-    distanceTag.AlwaysOnTop = true
-    distanceTag.Enabled = false
-    
-    local distanceText = Instance.new("TextLabel")
-    distanceText.Size = UDim2.new(1,  0,  1,  0)
-    distanceText.BackgroundTransparency = 1
-    distanceText.TextColor3 = Color3.fromRGB(255,  255,  0)
-    distanceText.TextStrokeTransparency = 0
-    distanceText.TextSize = 12
-    distanceText.Font = Enum.Font.SourceSans
-    distanceText.Text = ""
-    distanceText.Parent = distanceTag
-    
-    distanceTag.Parent = espFolder
-    
-    espFolder.Parent = workspace.CurrentCamera
-    
-    espObjects[player] = {
-        box = box, 
-        nameTag = nameTag, 
-        distanceTag = distanceTag, 
-        distanceText = distanceText
-    }
-end
+-- Mob Options
+local mobOptions = {
+    "Bandit", 
+    "Monkey", 
+    "Pirate", 
+    "Brute", 
+    "Dragon"
+}
 
-local function updateESP()
-    if not espEnabled then return end
+-- Function to find nearest mob
+local function findNearestMob()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if not character or not character: FindFirstChild("HumanoidRootPart") then return nil end
     
-    local camera = workspace.CurrentCamera
-    local localPlayer = game.Players.LocalPlayer
+    local rootPart = character.HumanoidRootPart
+    local nearestMob = nil
+    local nearestDistance = math.huge
     
-    if not localPlayer.Character or not localPlayer.Character:FindFirstChild("HumanoidRootPart") then return end
-    local localRoot = localPlayer.Character.HumanoidRootPart
-    
-    for player,  esp in pairs(espObjects) do
-        if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Head") then
-            local rootPart = player.Character.HumanoidRootPart
-            local head = player.Character.Head
+    for _,  v in pairs(workspace: GetChildren()) do
+        if v: FindFirstChild("Humanoid") and v: FindFirstChild("HumanoidRootPart") then
+            local mobName = string.lower(v.Name)
+            local selectedName = string.lower(selectedMob)
             
-            esp.box.Adornee = rootPart
-            esp.box.Visible = boxESPEnabled
-            
-            esp.nameTag.Adornee = head
-            esp.nameTag.Enabled = nameESPEnabled
-            
-            if distanceESPEnabled then
-                local distance = (localRoot.Position - rootPart.Position).Magnitude
-                esp.distanceText.Text = math.floor(distance + 0.5) .. " studs"
-                esp.distanceTag.Adornee = head
-                esp.distanceTag.Enabled = true
-            else
-                esp.distanceTag.Enabled = false
+            if string.find(mobName,  selectedName) or string.find(selectedName,  mobName) then
+                local distance = (v.HumanoidRootPart.Position - rootPart.Position).Magnitude
+                if distance <= farmDistance and distance < nearestDistance then
+                    nearestMob = v
+                    nearestDistance = distance
+                end
             end
-        else
-            esp.box.Visible = false
-            esp.nameTag.Enabled = false
-            esp.distanceTag.Enabled = false
         end
     end
-end
-
-local function removeESP(player)
-    if espObjects[player] then
-        espObjects[player].box:Destroy()
-        espObjects[player].nameTag:Destroy()
-        espObjects[player].distanceTag:Destroy()
-        espObjects[player] = nil
-    end
-end
-
-local espToggleLabel = Instance.new("TextLabel")
-espToggleLabel.Size = UDim2.new(0,  150,  0,  30)
-espToggleLabel.Position = UDim2.new(0,  0,  0,  0)
-espToggleLabel.BackgroundTransparency = 1
-espToggleLabel.Text = "ESP Enabled:  "
-espToggleLabel.TextColor3 = Color3.fromRGB(220,  220,  220)
-espToggleLabel.TextSize = 14
-espToggleLabel.Font = Enum.Font.SourceSans
-espToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
-espToggleLabel.Parent = mainTab
-
-local espToggleButton = Instance.new("TextButton")
-espToggleButton.Size = UDim2.new(0,  80,  0,  30)
-espToggleButton.Position = UDim2.new(0,  160,  0,  0)
-espToggleButton.BackgroundColor3 = Color3.fromRGB(150,  0,  0)
-espToggleButton.Text = "OFF"
-espToggleButton.TextColor3 = Color3.fromRGB(255,  255,  255)
-espToggleButton.TextSize = 14
-espToggleButton.Font = Enum.Font.SourceSans
-
-local espToggleCorner = Instance.new("UICorner")
-espToggleCorner.CornerRadius = UDim.new(0,  5)
-espToggleCorner.Parent = espToggleButton
-
-local espToggleStroke = Instance.new("UIStroke")
-espToggleStroke.Color = Color3.fromRGB(100,  100,  100)
-espToggleStroke.Thickness = 1
-espToggleStroke.Parent = espToggleButton
-
-espToggleButton.Parent = mainTab
-
-espToggleButton.MouseButton1Click:Connect(function()
-    espEnabled = not espEnabled
-    espToggleButton.Text = espEnabled and "ON" or "OFF"
-    espToggleButton.BackgroundColor3 = espEnabled and Color3.fromRGB(0,  150,  0) or Color3.fromRGB(150,  0,  0)
     
-    if espEnabled then
-        for _,  player in ipairs(game.Players:GetPlayers()) do
-            createESP(player)
+    return nearestMob
+end
+
+-- Function to bring mobs
+local function bringMobs()
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if not character or not character: FindFirstChild("HumanoidRootPart") then return end
+    
+    local rootPart = character.HumanoidRootPart
+    
+    for _,  v in pairs(workspace: GetChildren()) do
+        if v: FindFirstChild("Humanoid") and v: FindFirstChild("HumanoidRootPart") then
+            local mobName = string.lower(v.Name)
+            local selectedName = string.lower(selectedMob)
+            
+            if string.find(mobName,  selectedName) or string.find(selectedName,  mobName) then
+                local distance = (v.HumanoidRootPart.Position - rootPart.Position).Magnitude
+                if distance <= farmDistance then
+                    v.HumanoidRootPart.CFrame = rootPart.CFrame * CFrame.new(math.random(-5,  5),  0,  math.random(-5,  5))
+                end
+            end
         end
-    else
-        for _,  esp in pairs(espObjects) do
-            esp.box.Visible = false
-            esp.nameTag.Enabled = false
-            esp.distanceTag.Enabled = false
+    end
+end
+
+-- Function to attack mob
+local function attackMob(mob)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if not character then return end
+    
+    local tool = nil
+    for _,  v in pairs(player: GetChildren()) do
+        if v:IsA("BackpackItem") then
+            tool = v
+            break
         end
+    end
+    
+    if tool then
+        tool.Parent = character
+        if tool: FindFirstChild("RemoteFunction") then
+            tool.RemoteFunction: InvokeServer("Attack")
+        elseif tool: FindFirstChild("RemoteEvent") then
+            tool.RemoteEvent: FireServer("Attack")
+        end
+    end
+end
+
+-- Autofarm Loop
+spawn(function()
+    while true do
+        if autofarmEnabled then
+            local mob = findNearestMob()
+            if mob then
+                if fastAttackEnabled then
+                    attackMob(mob)
+                end
+                
+                if bringMobsEnabled then
+                    bringMobs()
+                end
+            end
+        end
+        wait(0.1)
     end
 end)
 
-local boxToggleLabel = Instance.new("TextLabel")
-boxToggleLabel.Size = UDim2.new(0,  150,  0,  30)
-boxToggleLabel.Position = UDim2.new(0,  0,  0,  40)
-boxToggleLabel.BackgroundTransparency = 1
-boxToggleLabel.Text = "Box ESP:  "
-boxToggleLabel.TextColor3 = Color3.fromRGB(220,  220,  220)
-boxToggleLabel.TextSize = 14
-boxToggleLabel.Font = Enum.Font.SourceSans
-boxToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
-boxToggleLabel.Parent = mainTab
+-- Main Tab UI
+local autofarmLabel = Instance.new("TextLabel")
+autofarmLabel.Size = UDim2.new(0,   150,   0,   30)
+autofarmLabel.Position = UDim2.new(0,   0,   0,   0)
+autofarmLabel.BackgroundTransparency = 1
+autofarmLabel.Text = "Auto Farm:  "
+autofarmLabel.TextColor3 = Color3.fromRGB(220,   220,   220)
+autofarmLabel.TextSize = 14
+autofarmLabel.Font = Enum.Font.SourceSans
+autofarmLabel.TextXAlignment = Enum.TextXAlignment.Left
+autofarmLabel.Parent = mainTab
 
-local boxToggleButton = Instance.new("TextButton")
-boxToggleButton.Size = UDim2.new(0,  80,  0,  30)
-boxToggleButton.Position = UDim2.new(0,  160,  0,  40)
-boxToggleButton.BackgroundColor3 = Color3.fromRGB(0,  150,  0)
-boxToggleButton.Text = "ON"
-boxToggleButton.TextColor3 = Color3.fromRGB(255,  255,  255)
-boxToggleButton.TextSize = 14
-boxToggleButton.Font = Enum.Font.SourceSans
+local autofarmButton = Instance.new("TextButton")
+autofarmButton.Size = UDim2.new(0,   80,   0,   30)
+autofarmButton.Position = UDim2.new(0,   160,   0,   0)
+autofarmButton.BackgroundColor3 = Color3.fromRGB(150,   0,   0)
+autofarmButton.Text = "OFF"
+autofarmButton.TextColor3 = Color3.fromRGB(255,   255,   255)
+autofarmButton.TextSize = 14
+autofarmButton.Font = Enum.Font.SourceSans
 
-local boxToggleCorner = Instance.new("UICorner")
-boxToggleCorner.CornerRadius = UDim.new(0,  5)
-boxToggleCorner.Parent = boxToggleButton
+local autofarmCorner = Instance.new("UICorner")
+autofarmCorner.CornerRadius = UDim.new(0,   5)
+autofarmCorner.Parent = autofarmButton
 
-local boxToggleStroke = Instance.new("UIStroke")
-boxToggleStroke.Color = Color3.fromRGB(100,  100,  100)
-boxToggleStroke.Thickness = 1
-boxToggleStroke.Parent = boxToggleButton
+local autofarmStroke = Instance.new("UIStroke")
+autofarmStroke.Color = Color3.fromRGB(100,   100,   100)
+autofarmStroke.Thickness = 1
+autofarmStroke.Parent = autofarmButton
 
-boxToggleButton.Parent = mainTab
+autofarmButton.Parent = mainTab
 
-boxToggleButton.MouseButton1Click:Connect(function()
-    boxESPEnabled = not boxESPEnabled
-    boxToggleButton.Text = boxESPEnabled and "ON" or "OFF"
-    boxToggleButton.BackgroundColor3 = boxESPEnabled and Color3.fromRGB(0,  150,  0) or Color3.fromRGB(150,  0,  0)
+autofarmButton.MouseButton1Click: Connect(function()
+    autofarmEnabled = not autofarmEnabled
+    autofarmButton.Text = autofarmEnabled and "ON" or "OFF"
+    autofarmButton.BackgroundColor3 = autofarmEnabled and Color3.fromRGB(0,   150,   0) or Color3.fromRGB(150,   0,   0)
 end)
 
-local nameToggleLabel = Instance.new("TextLabel")
-nameToggleLabel.Size = UDim2.new(0,  150,  0,  30)
-nameToggleLabel.Position = UDim2.new(0,  0,  0,  80)
-nameToggleLabel.BackgroundTransparency = 1
-nameToggleLabel.Text = "Name ESP:  "
-nameToggleLabel.TextColor3 = Color3.fromRGB(220,  220,  220)
-nameToggleLabel.TextSize = 14
-nameToggleLabel.Font = Enum.Font.SourceSans
-nameToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
-nameToggleLabel.Parent = mainTab
+local fastAttackLabel = Instance.new("TextLabel")
+fastAttackLabel.Size = UDim2.new(0,   150,   0,   30)
+fastAttackLabel.Position = UDim2.new(0,   0,   0,   40)
+fastAttackLabel.BackgroundTransparency = 1
+fastAttackLabel.Text = "Fast Attack:  "
+fastAttackLabel.TextColor3 = Color3.fromRGB(220,   220,   220)
+fastAttackLabel.TextSize = 14
+fastAttackLabel.Font = Enum.Font.SourceSans
+fastAttackLabel.TextXAlignment = Enum.TextXAlignment.Left
+fastAttackLabel.Parent = mainTab
 
-local nameToggleButton = Instance.new("TextButton")
-nameToggleButton.Size = UDim2.new(0,  80,  0,  30)
-nameToggleButton.Position = UDim2.new(0,  160,  0,  80)
-nameToggleButton.BackgroundColor3 = Color3.fromRGB(0,  150,  0)
-nameToggleButton.Text = "ON"
-nameToggleButton.TextColor3 = Color3.fromRGB(255,  255,  255)
-nameToggleButton.TextSize = 14
-nameToggleButton.Font = Enum.Font.SourceSans
+local fastAttackButton = Instance.new("TextButton")
+fastAttackButton.Size = UDim2.new(0,   80,   0,   30)
+fastAttackButton.Position = UDim2.new(0,   160,   0,   40)
+fastAttackButton.BackgroundColor3 = Color3.fromRGB(150,   0,   0)
+fastAttackButton.Text = "OFF"
+fastAttackButton.TextColor3 = Color3.fromRGB(255,   255,   255)
+fastAttackButton.TextSize = 14
+fastAttackButton.Font = Enum.Font.SourceSans
 
-local nameToggleCorner = Instance.new("UICorner")
-nameToggleCorner.CornerRadius = UDim.new(0,  5)
-nameToggleCorner.Parent = nameToggleButton
+local fastAttackCorner = Instance.new("UICorner")
+fastAttackCorner.CornerRadius = UDim.new(0,   5)
+fastAttackCorner.Parent = fastAttackButton
 
-local nameToggleStroke = Instance.new("UIStroke")
-nameToggleStroke.Color = Color3.fromRGB(100,  100,  100)
-nameToggleStroke.Thickness = 1
-nameToggleStroke.Parent = nameToggleButton
+local fastAttackStroke = Instance.new("UIStroke")
+fastAttackStroke.Color = Color3.fromRGB(100,   100,   100)
+fastAttackStroke.Thickness = 1
+fastAttackStroke.Parent = fastAttackButton
 
-nameToggleButton.Parent = mainTab
+fastAttackButton.Parent = mainTab
 
-nameToggleButton.MouseButton1Click:Connect(function()
-    nameESPEnabled = not nameESPEnabled
-    nameToggleButton.Text = nameESPEnabled and "ON" or "OFF"
-    nameToggleButton.BackgroundColor3 = nameESPEnabled and Color3.fromRGB(0,  150,  0) or Color3.fromRGB(150,  0,  0)
+fastAttackButton.MouseButton1Click: Connect(function()
+    fastAttackEnabled = not fastAttackEnabled
+    fastAttackButton.Text = fastAttackEnabled and "ON" or "OFF"
+    fastAttackButton.BackgroundColor3 = fastAttackEnabled and Color3.fromRGB(0,   150,   0) or Color3.fromRGB(150,   0,   0)
 end)
 
-local distanceToggleLabel = Instance.new("TextLabel")
-distanceToggleLabel.Size = UDim2.new(0,  150,  0,  30)
-distanceToggleLabel.Position = UDim2.new(0,  0,  0,  120)
-distanceToggleLabel.BackgroundTransparency = 1
-distanceToggleLabel.Text = "Distance ESP:  "
-distanceToggleLabel.TextColor3 = Color3.fromRGB(220,  220,  220)
-distanceToggleLabel.TextSize = 14
-distanceToggleLabel.Font = Enum.Font.SourceSans
-distanceToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
-distanceToggleLabel.Parent = mainTab
+local bringMobsLabel = Instance.new("TextLabel")
+bringMobsLabel.Size = UDim2.new(0,   150,   0,   30)
+bringMobsLabel.Position = UDim2.new(0,   0,   0,   80)
+bringMobsLabel.BackgroundTransparency = 1
+bringMobsLabel.Text = "Bring Mobs:  "
+bringMobsLabel.TextColor3 = Color3.fromRGB(220,   220,   220)
+bringMobsLabel.TextSize = 14
+bringMobsLabel.Font = Enum.Font.SourceSans
+bringMobsLabel.TextXAlignment = Enum.TextXAlignment.Left
+bringMobsLabel.Parent = mainTab
 
-local distanceToggleButton = Instance.new("TextButton")
-distanceToggleButton.Size = UDim2.new(0,  80,  0,  30)
-distanceToggleButton.Position = UDim2.new(0,  160,  0,  120)
-distanceToggleButton.BackgroundColor3 = Color3.fromRGB(0,  150,  0)
-distanceToggleButton.Text = "ON"
-distanceToggleButton.TextColor3 = Color3.fromRGB(255,  255,  255)
-distanceToggleButton.TextSize = 14
-distanceToggleButton.Font = Enum.Font.SourceSans
+local bringMobsButton = Instance.new("TextButton")
+bringMobsButton.Size = UDim2.new(0,   80,   0,   30)
+bringMobsButton.Position = UDim2.new(0,   160,   0,   80)
+bringMobsButton.BackgroundColor3 = Color3.fromRGB(150,   0,   0)
+bringMobsButton.Text = "OFF"
+bringMobsButton.TextColor3 = Color3.fromRGB(255,   255,   255)
+bringMobsButton.TextSize = 14
+bringMobsButton.Font = Enum.Font.SourceSans
 
-local distanceToggleCorner = Instance.new("UICorner")
-distanceToggleCorner.CornerRadius = UDim.new(0,  5)
-distanceToggleCorner.Parent = distanceToggleButton
+local bringMobsCorner = Instance.new("UICorner")
+bringMobsCorner.CornerRadius = UDim.new(0,   5)
+bringMobsCorner.Parent = bringMobsButton
 
-local distanceToggleStroke = Instance.new("UIStroke")
-distanceToggleStroke.Color = Color3.fromRGB(100,  100,  100)
-distanceToggleStroke.Thickness = 1
-distanceToggleStroke.Parent = distanceToggleButton
+local bringMobsStroke = Instance.new("UIStroke")
+bringMobsStroke.Color = Color3.fromRGB(100,   100,   100)
+bringMobsStroke.Thickness = 1
+bringMobsStroke.Parent = bringMobsButton
 
-distanceToggleButton.Parent = mainTab
+bringMobsButton.Parent = mainTab
 
-distanceToggleButton.MouseButton1Click:Connect(function()
-    distanceESPEnabled = not distanceESPEnabled
-    distanceToggleButton.Text = distanceESPEnabled and "ON" or "OFF"
-    distanceToggleButton.BackgroundColor3 = distanceESPEnabled and Color3.fromRGB(0,  150,  0) or Color3.fromRGB(150,  0,  0)
+bringMobsButton.MouseButton1Click: Connect(function()
+    bringMobsEnabled = not bringMobsEnabled
+    bringMobsButton.Text = bringMobsEnabled and "ON" or "OFF"
+    bringMobsButton.BackgroundColor3 = bringMobsEnabled and Color3.fromRGB(0,   150,   0) or Color3.fromRGB(150,   0,   0)
 end)
 
+local mobSelectorLabel = Instance.new("TextLabel")
+mobSelectorLabel.Size = UDim2.new(0,   150,   0,   30)
+mobSelectorLabel.Position = UDim2.new(0,   0,   0,   120)
+mobSelectorLabel.BackgroundTransparency = 1
+mobSelectorLabel.Text = "Select Mob:  "
+mobSelectorLabel.TextColor3 = Color3.fromRGB(220,   220,   220)
+mobSelectorLabel.TextSize = 14
+mobSelectorLabel.Font = Enum.Font.SourceSans
+mobSelectorLabel.TextXAlignment = Enum.TextXAlignment.Left
+mobSelectorLabel.Parent = mainTab
+
+local mobDropdown = Instance.new("TextButton")
+mobDropdown.Size = UDim2.new(0,   120,   0,   30)
+mobDropdown.Position = UDim2.new(0,   160,   0,   120)
+mobDropdown.BackgroundColor3 = Color3.fromRGB(70,   70,   70)
+mobDropdown.Text = selectedMob
+mobDropdown.TextColor3 = Color3.fromRGB(255,   255,   255)
+mobDropdown.TextSize = 14
+mobDropdown.Font = Enum.Font.SourceSans
+
+local mobDropdownCorner = Instance.new("UICorner")
+mobDropdownCorner.CornerRadius = UDim.new(0,   5)
+mobDropdownCorner.Parent = mobDropdown
+
+local mobDropdownStroke = Instance.new("UIStroke")
+mobDropdownStroke.Color = Color3.fromRGB(100,   100,   100)
+mobDropdownStroke.Thickness = 1
+mobDropdownStroke.Parent = mobDropdown
+
+mobDropdown.Parent = mainTab
+
+-- Mob selection dropdown logic
+local mobDropdownOpen = false
+mobDropdown.MouseButton1Click: Connect(function()
+    mobDropdownOpen = not mobDropdownOpen
+    if mobDropdownOpen then
+        local dropdownFrame = Instance.new("Frame")
+        dropdownFrame.Size = UDim2.new(0,   120,   0,   #mobOptions * 25)
+        dropdownFrame.Position = UDim2.new(0,   160,   0,   155)
+        dropdownFrame.BackgroundColor3 = Color3.fromRGB(50,   50,   50)
+        dropdownFrame.BorderSizePixel = 0
+        dropdownFrame.ZIndex = 10
+        dropdownFrame.Parent = mainTab
+        
+        local dropdownCorner = Instance.new("UICorner")
+        dropdownCorner.CornerRadius = UDim.new(0,   5)
+        dropdownCorner.Parent = dropdownFrame
+        
+        local dropdownStroke = Instance.new("UIStroke")
+        dropdownStroke.Color = Color3.fromRGB(100,   100,   100)
+        dropdownStroke.Thickness = 1
+        dropdownStroke.Parent = dropdownFrame
+        
+        for i,  mob in ipairs(mobOptions) do
+            local optionButton = Instance.new("TextButton")
+            optionButton.Size = UDim2.new(1,   0,   0,   25)
+            optionButton.Position = UDim2.new(0,   0,   0,   (i - 1) * 25)
+            optionButton.BackgroundColor3 = Color3.fromRGB(70,   70,   70)
+            optionButton.Text = mob
+            optionButton.TextColor3 = Color3.fromRGB(255,   255,   255)
+            optionButton.TextSize = 12
+            optionButton.Font = Enum.Font.SourceSans
+            optionButton.BorderSizePixel = 0
+            optionButton.ZIndex = 11
+            optionButton.Parent = dropdownFrame
+            
+            local optionCorner = Instance.new("UICorner")
+            optionCorner.CornerRadius = UDim.new(0,   3)
+            optionCorner.Parent = optionButton
+            
+            optionButton.MouseButton1Click: Connect(function()
+                selectedMob = mob
+                mobDropdown.Text = mob
+                dropdownFrame: Destroy()
+                mobDropdownOpen = false
+            end)
+        end
+        
+        -- Close dropdown when clicking elsewhere
+        local function closeDropdown()
+            dropdownFrame: Destroy()
+            mobDropdownOpen = false
+        end
+        
+        dropdownFrame:GetPropertyChangedSignal("AbsoluteSize"): Connect(closeDropdown)
+    end
+end)
+
+-- Settings Tab UI
 local settingsLabel = Instance.new("TextLabel")
-settingsLabel.Size = UDim2.new(1,  0,  0,  30)
-settingsLabel.Position = UDim2.new(0,  0,  0,  0)
+settingsLabel.Size = UDim2.new(1,   0,   0,   30)
+settingsLabel.Position = UDim2.new(0,   0,   0,   0)
 settingsLabel.BackgroundTransparency = 1
 settingsLabel.Text = "Settings Panel"
-settingsLabel.TextColor3 = Color3.fromRGB(255,  255,  255)
+settingsLabel.TextColor3 = Color3.fromRGB(255,   255,   255)
 settingsLabel.TextSize = 18
 settingsLabel.Font = Enum.Font.SourceSans
 settingsLabel.Parent = settingsTab
 
 local toggleLabel = Instance.new("TextLabel")
-toggleLabel.Size = UDim2.new(0,  150,  0,  30)
-toggleLabel.Position = UDim2.new(0,  0,  0,  40)
+toggleLabel.Size = UDim2.new(0,   150,   0,   30)
+toggleLabel.Position = UDim2.new(0,   0,   0,   40)
 toggleLabel.BackgroundTransparency = 1
 toggleLabel.Text = "Enable Feature:  "
-toggleLabel.TextColor3 = Color3.fromRGB(220,  220,  220)
+toggleLabel.TextColor3 = Color3.fromRGB(220,   220,   220)
 toggleLabel.TextSize = 14
 toggleLabel.Font = Enum.Font.SourceSans
 toggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 toggleLabel.Parent = settingsTab
 
 local toggleButton = Instance.new("TextButton")
-toggleButton.Size = UDim2.new(0,  80,  0,  30)
-toggleButton.Position = UDim2.new(0,  160,  0,  40)
-toggleButton.BackgroundColor3 = Color3.fromRGB(70,  70,  70)
+toggleButton.Size = UDim2.new(0,   80,   0,   30)
+toggleButton.Position = UDim2.new(0,   160,   0,   40)
+toggleButton.BackgroundColor3 = Color3.fromRGB(70,   70,   70)
 toggleButton.Text = "OFF"
-toggleButton.TextColor3 = Color3.fromRGB(200,  200,  200)
+toggleButton.TextColor3 = Color3.fromRGB(200,   200,   200)
 toggleButton.TextSize = 14
 toggleButton.Font = Enum.Font.SourceSans
 
 local toggleCorner = Instance.new("UICorner")
-toggleCorner.CornerRadius = UDim.new(0,  5)
+toggleCorner.CornerRadius = UDim.new(0,   5)
 toggleCorner.Parent = toggleButton
 
 local toggleStroke = Instance.new("UIStroke")
-toggleStroke.Color = Color3.fromRGB(100,  100,  100)
+toggleStroke.Color = Color3.fromRGB(100,   100,   100)
 toggleStroke.Thickness = 1
 toggleStroke.Parent = toggleButton
 
 toggleButton.Parent = settingsTab
 
 local featureEnabled = false
-toggleButton.MouseButton1Click:Connect(function()
+toggleButton.MouseButton1Click: Connect(function()
     featureEnabled = not featureEnabled
     toggleButton.Text = featureEnabled and "ON" or "OFF"
-    toggleButton.BackgroundColor3 = featureEnabled and Color3.fromRGB(0,  150,  0) or Color3.fromRGB(150,  0,  0)
+    toggleButton.BackgroundColor3 = featureEnabled and Color3.fromRGB(0,   150,   0) or Color3.fromRGB(150,   0,   0)
 end)
 
 local windowCorner = Instance.new("UICorner")
-windowCorner.CornerRadius = UDim.new(0,  8)
+windowCorner.CornerRadius = UDim.new(0,   8)
 windowCorner.Parent = windowFrame
 
 local windowStroke = Instance.new("UIStroke")
-windowStroke.Color = Color3.fromRGB(60,  60,  60)
+windowStroke.Color = Color3.fromRGB(60,   60,   60)
 windowStroke.Thickness = 2
 windowStroke.Parent = windowFrame
 
-tabs["Main"].button.BackgroundColor3 = Color3.fromRGB(90,  90,  90)
+tabs["Main"].button.BackgroundColor3 = Color3.fromRGB(90,   90,   90)
 tabs["Main"].content.Visible = true
 currentTab = "Main"
-
-game.Players.PlayerAdded:Connect(function(player)
-    if espEnabled then
-        createESP(player)
-    end
-end)
-
-game.Players.PlayerRemoving:Connect(function(player)
-    removeESP(player)
-end)
-
-game:GetService("RunService").RenderStepped:Connect(function()
-    if espEnabled then
-        updateESP()
-    end
-end)
-
-for _,  player in ipairs(game.Players:GetPlayers()) do
-    createESP(player)
-end
