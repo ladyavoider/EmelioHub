@@ -3,21 +3,6 @@ screenGui.Name = "Emelio"
 screenGui.Parent = game.CoreGui
 screenGui.ResetOnSpawn = false
 
-local securityKey = "ESP_" .. tostring(tick()):sub(1, 5) .. "_SEC"
-local securityEnabled = true
-local lastCheck = tick()
-
-local function checkSecurity()
-    if not securityEnabled then return true end
-    
-    local currentTime = tick()
-    if currentTime - lastCheck > 30 then
-        lastCheck = currentTime
-        return true
-    end
-    return true
-end
-
 local windowFrame = Instance.new("Frame")
 windowFrame.Name = "Window"
 windowFrame.Size = UDim2.new(0,    400,    0,    300)
