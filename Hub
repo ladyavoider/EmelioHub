@@ -5,9 +5,9 @@ screenGui.ResetOnSpawn = false
 
 local windowFrame = Instance.new("Frame")
 windowFrame.Name = "Window"
-windowFrame.Size = UDim2.new(0,    500,    0,    400)
-windowFrame.Position = UDim2.new(0.5,    -250,    0.5,    -200)
-windowFrame.BackgroundColor3 = Color3.fromRGB(30,    30,    30)
+windowFrame.Size = UDim2.new(0,     500,     0,     400)
+windowFrame.Position = UDim2.new(0.5,     -250,     0.5,     -200)
+windowFrame.BackgroundColor3 = Color3.fromRGB(30,     30,     30)
 windowFrame.BorderSizePixel = 0
 windowFrame.Active = true
 windowFrame.Draggable = true
@@ -15,18 +15,18 @@ windowFrame.Parent = screenGui
 
 local titleBar = Instance.new("Frame")
 titleBar.Name = "TitleBar"
-titleBar.Size = UDim2.new(1,    0,    0,    30)
-titleBar.Position = UDim2.new(0,    0,    0,    0)
-titleBar.BackgroundColor3 = Color3.fromRGB(40,    40,    40)
+titleBar.Size = UDim2.new(1,     0,     0,     30)
+titleBar.Position = UDim2.new(0,     0,     0,     0)
+titleBar.BackgroundColor3 = Color3.fromRGB(40,     40,     40)
 titleBar.Parent = windowFrame
 
 local titleText = Instance.new("TextLabel")
 titleText.Name = "Title"
-titleText.Size = UDim2.new(1,    -90,    1,    0)
-titleText.Position = UDim2.new(0,    10,    0,    0)
+titleText.Size = UDim2.new(1,     -90,     1,     0)
+titleText.Position = UDim2.new(0,     10,     0,     0)
 titleText.BackgroundTransparency = 1
 titleText.Text = "ESP & Hitbox"
-titleText.TextColor3 = Color3.fromRGB(255,    255,    255)
+titleText.TextColor3 = Color3.fromRGB(255,     255,     255)
 titleText.TextSize = 16
 titleText.Font = Enum.Font.SourceSansSemibold
 titleText.TextXAlignment = Enum.TextXAlignment.Left
@@ -34,38 +34,38 @@ titleText.Parent = titleBar
 
 local minimizeButton = Instance.new("TextButton")
 minimizeButton.Name = "MinimizeButton"
-minimizeButton.Size = UDim2.new(0,    20,    0,    20)
-minimizeButton.Position = UDim2.new(1,    -55,    0,    5)
-minimizeButton.BackgroundColor3 = Color3.fromRGB(70,    70,    70)
+minimizeButton.Size = UDim2.new(0,     20,     0,     20)
+minimizeButton.Position = UDim2.new(1,     -55,     0,     5)
+minimizeButton.BackgroundColor3 = Color3.fromRGB(70,     70,     70)
 minimizeButton.Text = "_"
-minimizeButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+minimizeButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 minimizeButton.TextSize = 14
 minimizeButton.Font = Enum.Font.SourceSansBold
 minimizeButton.Parent = titleBar
 
 local closeButton = Instance.new("TextButton")
 closeButton.Name = "CloseButton"
-closeButton.Size = UDim2.new(0,    20,    0,    20)
-closeButton.Position = UDim2.new(1,    -30,    0,    5)
-closeButton.BackgroundColor3 = Color3.fromRGB(200,    0,    0)
+closeButton.Size = UDim2.new(0,     20,     0,     20)
+closeButton.Position = UDim2.new(1,     -30,     0,     5)
+closeButton.BackgroundColor3 = Color3.fromRGB(200,     0,     0)
 closeButton.Text = "X"
-closeButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+closeButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 closeButton.TextSize = 14
 closeButton.Font = Enum.Font.SourceSansBold
 closeButton.Parent = titleBar
 
 local tabContainer = Instance.new("Frame")
 tabContainer.Name = "TabContainer"
-tabContainer.Size = UDim2.new(1,    0,    0,    40)
-tabContainer.Position = UDim2.new(0,    0,    0,    30)
-tabContainer.BackgroundColor3 = Color3.fromRGB(50,    50,    50)
+tabContainer.Size = UDim2.new(1,     0,     0,     40)
+tabContainer.Position = UDim2.new(0,     0,     0,     30)
+tabContainer.BackgroundColor3 = Color3.fromRGB(50,     50,     50)
 tabContainer.BorderSizePixel = 0
 tabContainer.Parent = windowFrame
 
 local contentArea = Instance.new("Frame")
 contentArea.Name = "ContentArea"
-contentArea.Size = UDim2.new(1,    0,    1,    -70)
-contentArea.Position = UDim2.new(0,    0,    0,    70)
+contentArea.Size = UDim2.new(1,     0,     1,     -70)
+contentArea.Position = UDim2.new(0,     0,     0,     70)
 contentArea.BackgroundTransparency = 1
 contentArea.Parent = windowFrame
 
@@ -73,66 +73,66 @@ local tabs = {}
 local currentTab = nil
 local isMinimized = false
 
-minimizeButton.MouseButton1Click:  Connect(function()
+minimizeButton.MouseButton1Click:   Connect(function()
     isMinimized = not isMinimized
     if isMinimized then
         contentArea.Visible = false
         tabContainer.Visible = false
-        windowFrame.Size = UDim2.new(0,    500,    0,    30)
+        windowFrame.Size = UDim2.new(0,     500,     0,     30)
         minimizeButton.Text = ""
     else
         contentArea.Visible = true
         tabContainer.Visible = true
-        windowFrame.Size = UDim2.new(0,    500,    0,    400)
+        windowFrame.Size = UDim2.new(0,     500,     0,     400)
         minimizeButton.Text = "_"
     end
 end)
 
-closeButton.MouseButton1Click:  Connect(function()
-    screenGui:  Destroy()
+closeButton.MouseButton1Click:   Connect(function()
+    screenGui:   Destroy()
 end)
 
 local function createTab(name)
     local tabButton = Instance.new("TextButton")
     tabButton.Name = name .. "Tab"
-    tabButton.Size = UDim2.new(0,    120,    1,    -10)
-    tabButton.Position = UDim2.new(0,    10 + (#tabs * 130),    0,    5)
-    tabButton.BackgroundColor3 = Color3.fromRGB(70,    70,    70)
+    tabButton.Size = UDim2.new(0,     120,     1,     -10)
+    tabButton.Position = UDim2.new(0,     10 + (#tabs * 130),     0,     5)
+    tabButton.BackgroundColor3 = Color3.fromRGB(70,     70,     70)
     tabButton.Text = name
-    tabButton.TextColor3 = Color3.fromRGB(200,    200,    200)
+    tabButton.TextColor3 = Color3.fromRGB(200,     200,     200)
     tabButton.TextSize = 14
     tabButton.Font = Enum.Font.SourceSans
     tabButton.Parent = tabContainer
     
     local tabContent = Instance.new("Frame")
     tabContent.Name = name .. "Content"
-    tabContent.Size = UDim2.new(1,    -20,    1,    -20)
-    tabContent.Position = UDim2.new(0,    10,    0,    10)
+    tabContent.Size = UDim2.new(1,     -20,     1,     -20)
+    tabContent.Position = UDim2.new(0,     10,     0,     10)
     tabContent.BackgroundTransparency = 1
     tabContent.Visible = false
     tabContent.Parent = contentArea
     
     local uiStroke = Instance.new("UIStroke")
-    uiStroke.Color = Color3.fromRGB(100,    100,    100)
+    uiStroke.Color = Color3.fromRGB(100,     100,     100)
     uiStroke.Thickness = 1
     uiStroke.Parent = tabButton
     
     local uiCorner = Instance.new("UICorner")
-    uiCorner.CornerRadius = UDim.new(0,    5)
+    uiCorner.CornerRadius = UDim.new(0,     5)
     uiCorner.Parent = tabButton
     
     tabs[name] = {
-        button = tabButton,   
+        button = tabButton,     
         content = tabContent
     }
     
-    tabButton.MouseButton1Click:  Connect(function()
+    tabButton.MouseButton1Click:   Connect(function()
         if currentTab then
-            tabs[currentTab].button.BackgroundColor3 = Color3.fromRGB(70,    70,    70)
+            tabs[currentTab].button.BackgroundColor3 = Color3.fromRGB(70,     70,     70)
             tabs[currentTab].content.Visible = false
         end
         
-        tabButton.BackgroundColor3 = Color3.fromRGB(90,    90,    90)
+        tabButton.BackgroundColor3 = Color3.fromRGB(90,     90,     90)
         tabContent.Visible = true
         currentTab = name
     end)
@@ -149,8 +149,14 @@ local distanceESPEnabled = true
 local espObjects = {}
 
 local hitboxEnabled = false
-local hitboxSize = Vector3.new(4,    6,    1)
+local hitboxSize = Vector3.new(4,     6,     1)
 local hitboxTransparency = 0.5
+
+local aimbotEnabled = false
+local aimbotTarget = nil
+local aimbotSmoothness = 0.1
+local aimbotFOV = 100
+local aimbotKey = Enum.KeyCode.E
 
 local function createESP(player)
     if player == game.Players.LocalPlayer then return end
@@ -161,7 +167,7 @@ local function createESP(player)
     local box = Instance.new("BoxHandleAdornment")
     box.Name = "Box"
     box.Size = hitboxSize
-    box.Color3 = Color3.fromRGB(255,    0,    0)
+    box.Color3 = Color3.fromRGB(255,     0,     0)
     box.Transparency = hitboxTransparency
     box.ZIndex = 10
     box.AlwaysOnTop = true
@@ -170,15 +176,15 @@ local function createESP(player)
     
     local nameTag = Instance.new("BillboardGui")
     nameTag.Name = "NameTag"
-    nameTag.Size = UDim2.new(0,    100,    0,    50)
-    nameTag.StudsOffset = Vector3.new(0,    3,    0)
+    nameTag.Size = UDim2.new(0,     100,     0,     50)
+    nameTag.StudsOffset = Vector3.new(0,     3,     0)
     nameTag.AlwaysOnTop = true
     nameTag.Enabled = false
     
     local nameText = Instance.new("TextLabel")
-    nameText.Size = UDim2.new(1,    0,    1,    0)
+    nameText.Size = UDim2.new(1,     0,     1,     0)
     nameText.BackgroundTransparency = 1
-    nameText.TextColor3 = Color3.fromRGB(255,    255,    255)
+    nameText.TextColor3 = Color3.fromRGB(255,     255,     255)
     nameText.TextStrokeTransparency = 0
     nameText.TextSize = 14
     nameText.Font = Enum.Font.SourceSansBold
@@ -189,15 +195,15 @@ local function createESP(player)
     
     local distanceTag = Instance.new("BillboardGui")
     distanceTag.Name = "DistanceTag"
-    distanceTag.Size = UDim2.new(0,    100,    0,    50)
-    distanceTag.StudsOffset = Vector3.new(0,    2,    0)
+    distanceTag.Size = UDim2.new(0,     100,     0,     50)
+    distanceTag.StudsOffset = Vector3.new(0,     2,     0)
     distanceTag.AlwaysOnTop = true
     distanceTag.Enabled = false
     
     local distanceText = Instance.new("TextLabel")
-    distanceText.Size = UDim2.new(1,    0,    1,    0)
+    distanceText.Size = UDim2.new(1,     0,     1,     0)
     distanceText.BackgroundTransparency = 1
-    distanceText.TextColor3 = Color3.fromRGB(255,    255,    0)
+    distanceText.TextColor3 = Color3.fromRGB(255,     255,     0)
     distanceText.TextStrokeTransparency = 0
     distanceText.TextSize = 12
     distanceText.Font = Enum.Font.SourceSans
@@ -209,9 +215,9 @@ local function createESP(player)
     espFolder.Parent = workspace.CurrentCamera
     
     espObjects[player] = {
-        box = box,   
-        nameTag = nameTag,   
-        distanceTag = distanceTag,   
+        box = box,     
+        nameTag = nameTag,     
+        distanceTag = distanceTag,     
         distanceText = distanceText
     }
 end
@@ -222,11 +228,11 @@ local function updateESP()
     local camera = workspace.CurrentCamera
     local localPlayer = game.Players.LocalPlayer
     
-    if not localPlayer.Character or not localPlayer.Character:  FindFirstChild("HumanoidRootPart") then return end
+    if not localPlayer.Character or not localPlayer.Character:   FindFirstChild("HumanoidRootPart") then return end
     local localRoot = localPlayer.Character.HumanoidRootPart
     
-    for player,    esp in pairs(espObjects) do
-        if player and player.Character and player.Character:  FindFirstChild("HumanoidRootPart") and player.Character:  FindFirstChild("Head") then
+    for player,     esp in pairs(espObjects) do
+        if player and player.Character and player.Character:   FindFirstChild("HumanoidRootPart") and player.Character:   FindFirstChild("Head") then
             local rootPart = player.Character.HumanoidRootPart
             local head = player.Character.Head
             
@@ -254,55 +260,113 @@ end
 
 local function removeESP(player)
     if espObjects[player] then
-        espObjects[player].box:  Destroy()
-        espObjects[player].nameTag:  Destroy()
-        espObjects[player].distanceTag:  Destroy()
+        espObjects[player].box:   Destroy()
+        espObjects[player].nameTag:   Destroy()
+        espObjects[player].distanceTag:   Destroy()
         espObjects[player] = nil
     end
 end
 
+local function findNearestTarget()
+    local camera = workspace.CurrentCamera
+    local localPlayer = game.Players.LocalPlayer
+    
+    if not localPlayer.Character or not localPlayer.Character:   FindFirstChild("HumanoidRootPart") then return nil end
+    
+    local localRoot = localPlayer.Character.HumanoidRootPart
+    local nearestTarget = nil
+    local nearestDistance = math.huge
+    
+    for _,     player in pairs(game.Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character and player.Character:   FindFirstChild("HumanoidRootPart") and player.Character:   FindFirstChild("Head") then
+            local targetRoot = player.Character.HumanoidRootPart
+            local targetHead = player.Character.Head
+            
+            if player.Character:   FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+                local screenPoint,  onScreen = camera:   WorldToViewportPoint(targetHead.Position)
+                
+                if onScreen then
+                    local mousePos = game:GetService("UserInputService"):   GetMouseLocation()
+                    local distance = (Vector2.new(screenPoint.X,  screenPoint.Y) - mousePos).Magnitude
+                    
+                    if distance <= aimbotFOV and distance < nearestDistance then
+                        nearestTarget = player
+                        nearestDistance = distance
+                    end
+                end
+            end
+        end
+    end
+    
+    return nearestTarget
+end
+
+local function aimAtTarget(target)
+    local camera = workspace.CurrentCamera
+    local localPlayer = game.Players.LocalPlayer
+    
+    if not target or not target.Character or not target.Character:   FindFirstChild("Head") then return end
+    
+    local targetHead = target.Character.Head
+    local targetPosition = targetHead.Position
+
+    local currentCFrame = camera.CFrame
+    local targetCFrame = CFrame.new(currentCFrame.Position,  targetPosition)
+    
+    camera.CFrame = currentCFrame:   Lerp(targetCFrame,  aimbotSmoothness)
+end
+
+game:GetService("RunService").RenderStepped:   Connect(function()
+    if aimbotEnabled and game:GetService("UserInputService"):   IsKeyDown(aimbotKey) then
+        aimbotTarget = findNearestTarget()
+        if aimbotTarget then
+            aimAtTarget(aimbotTarget)
+        end
+    end
+end)
+
 local espToggleLabel = Instance.new("TextLabel")
-espToggleLabel.Size = UDim2.new(0,    150,    0,    30)
-espToggleLabel.Position = UDim2.new(0,    0,    0,    0)
+espToggleLabel.Size = UDim2.new(0,     150,     0,     30)
+espToggleLabel.Position = UDim2.new(0,     0,     0,     0)
 espToggleLabel.BackgroundTransparency = 1
-espToggleLabel.Text = "ESP Enabled:   "
-espToggleLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+espToggleLabel.Text = "ESP Enabled:     "
+espToggleLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 espToggleLabel.TextSize = 14
 espToggleLabel.Font = Enum.Font.SourceSans
 espToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 espToggleLabel.Parent = mainTab
 
 local espToggleButton = Instance.new("TextButton")
-espToggleButton.Size = UDim2.new(0,    80,    0,    30)
-espToggleButton.Position = UDim2.new(0,    160,    0,    0)
-espToggleButton.BackgroundColor3 = Color3.fromRGB(150,    0,    0)
+espToggleButton.Size = UDim2.new(0,     80,     0,     30)
+espToggleButton.Position = UDim2.new(0,     160,     0,     0)
+espToggleButton.BackgroundColor3 = Color3.fromRGB(150,     0,     0)
 espToggleButton.Text = "OFF"
-espToggleButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+espToggleButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 espToggleButton.TextSize = 14
 espToggleButton.Font = Enum.Font.SourceSans
 
 local espToggleCorner = Instance.new("UICorner")
-espToggleCorner.CornerRadius = UDim.new(0,    5)
+espToggleCorner.CornerRadius = UDim.new(0,     5)
 espToggleCorner.Parent = espToggleButton
 
 local espToggleStroke = Instance.new("UIStroke")
-espToggleStroke.Color = Color3.fromRGB(100,    100,    100)
+espToggleStroke.Color = Color3.fromRGB(100,     100,     100)
 espToggleStroke.Thickness = 1
 espToggleStroke.Parent = espToggleButton
 
 espToggleButton.Parent = mainTab
 
-espToggleButton.MouseButton1Click:  Connect(function()
+espToggleButton.MouseButton1Click:   Connect(function()
     espEnabled = not espEnabled
     espToggleButton.Text = espEnabled and "ON" or "OFF"
-    espToggleButton.BackgroundColor3 = espEnabled and Color3.fromRGB(0,    150,    0) or Color3.fromRGB(150,    0,    0)
+    espToggleButton.BackgroundColor3 = espEnabled and Color3.fromRGB(0,     150,     0) or Color3.fromRGB(150,     0,     0)
     
     if espEnabled then
-        for _,    player in ipairs(game.Players:  GetPlayers()) do
+        for _,     player in ipairs(game.Players:   GetPlayers()) do
             createESP(player)
         end
     else
-        for _,    esp in pairs(espObjects) do
+        for _,     esp in pairs(espObjects) do
             esp.box.Visible = false
             esp.nameTag.Enabled = false
             esp.distanceTag.Enabled = false
@@ -311,198 +375,328 @@ espToggleButton.MouseButton1Click:  Connect(function()
 end)
 
 local boxToggleLabel = Instance.new("TextLabel")
-boxToggleLabel.Size = UDim2.new(0,    150,    0,    30)
-boxToggleLabel.Position = UDim2.new(0,    0,    0,    40)
+boxToggleLabel.Size = UDim2.new(0,     150,     0,     30)
+boxToggleLabel.Position = UDim2.new(0,     0,     0,     40)
 boxToggleLabel.BackgroundTransparency = 1
-boxToggleLabel.Text = "Box ESP:   "
-boxToggleLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+boxToggleLabel.Text = "Box ESP:     "
+boxToggleLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 boxToggleLabel.TextSize = 14
 boxToggleLabel.Font = Enum.Font.SourceSans
 boxToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 boxToggleLabel.Parent = mainTab
 
 local boxToggleButton = Instance.new("TextButton")
-boxToggleButton.Size = UDim2.new(0,    80,    0,    30)
-boxToggleButton.Position = UDim2.new(0,    160,    0,    40)
-boxToggleButton.BackgroundColor3 = Color3.fromRGB(0,    150,    0)
+boxToggleButton.Size = UDim2.new(0,     80,     0,     30)
+boxToggleButton.Position = UDim2.new(0,     160,     0,     40)
+boxToggleButton.BackgroundColor3 = Color3.fromRGB(0,     150,     0)
 boxToggleButton.Text = "ON"
-boxToggleButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+boxToggleButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 boxToggleButton.TextSize = 14
 boxToggleButton.Font = Enum.Font.SourceSans
 
 local boxToggleCorner = Instance.new("UICorner")
-boxToggleCorner.CornerRadius = UDim.new(0,    5)
+boxToggleCorner.CornerRadius = UDim.new(0,     5)
 boxToggleCorner.Parent = boxToggleButton
 
 local boxToggleStroke = Instance.new("UIStroke")
-boxToggleStroke.Color = Color3.fromRGB(100,    100,    100)
+boxToggleStroke.Color = Color3.fromRGB(100,     100,     100)
 boxToggleStroke.Thickness = 1
 boxToggleStroke.Parent = boxToggleButton
 
 boxToggleButton.Parent = mainTab
 
-boxToggleButton.MouseButton1Click:  Connect(function()
+boxToggleButton.MouseButton1Click:   Connect(function()
     boxESPEnabled = not boxESPEnabled
     boxToggleButton.Text = boxESPEnabled and "ON" or "OFF"
-    boxToggleButton.BackgroundColor3 = boxESPEnabled and Color3.fromRGB(0,    150,    0) or Color3.fromRGB(150,    0,    0)
+    boxToggleButton.BackgroundColor3 = boxESPEnabled and Color3.fromRGB(0,     150,     0) or Color3.fromRGB(150,     0,     0)
 end)
 
 local nameToggleLabel = Instance.new("TextLabel")
-nameToggleLabel.Size = UDim2.new(0,    150,    0,    30)
-nameToggleLabel.Position = UDim2.new(0,    0,    0,    80)
+nameToggleLabel.Size = UDim2.new(0,     150,     0,     30)
+nameToggleLabel.Position = UDim2.new(0,     0,     0,     80)
 nameToggleLabel.BackgroundTransparency = 1
-nameToggleLabel.Text = "Name ESP:   "
-nameToggleLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+nameToggleLabel.Text = "Name ESP:     "
+nameToggleLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 nameToggleLabel.TextSize = 14
 nameToggleLabel.Font = Enum.Font.SourceSans
 nameToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 nameToggleLabel.Parent = mainTab
 
 local nameToggleButton = Instance.new("TextButton")
-nameToggleButton.Size = UDim2.new(0,    80,    0,    30)
-nameToggleButton.Position = UDim2.new(0,    160,    0,    80)
-nameToggleButton.BackgroundColor3 = Color3.fromRGB(0,    150,    0)
+nameToggleButton.Size = UDim2.new(0,     80,     0,     30)
+nameToggleButton.Position = UDim2.new(0,     160,     0,     80)
+nameToggleButton.BackgroundColor3 = Color3.fromRGB(0,     150,     0)
 nameToggleButton.Text = "ON"
-nameToggleButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+nameToggleButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 nameToggleButton.TextSize = 14
 nameToggleButton.Font = Enum.Font.SourceSans
 
 local nameToggleCorner = Instance.new("UICorner")
-nameToggleCorner.CornerRadius = UDim.new(0,    5)
+nameToggleCorner.CornerRadius = UDim.new(0,     5)
 nameToggleCorner.Parent = nameToggleButton
 
 local nameToggleStroke = Instance.new("UIStroke")
-nameToggleStroke.Color = Color3.fromRGB(100,    100,    100)
+nameToggleStroke.Color = Color3.fromRGB(100,     100,     100)
 nameToggleStroke.Thickness = 1
 nameToggleStroke.Parent = nameToggleButton
 
 nameToggleButton.Parent = mainTab
 
-nameToggleButton.MouseButton1Click:  Connect(function()
+nameToggleButton.MouseButton1Click:   Connect(function()
     nameESPEnabled = not nameESPEnabled
     nameToggleButton.Text = nameESPEnabled and "ON" or "OFF"
-    nameToggleButton.BackgroundColor3 = nameESPEnabled and Color3.fromRGB(0,    150,    0) or Color3.fromRGB(150,    0,    0)
+    nameToggleButton.BackgroundColor3 = nameESPEnabled and Color3.fromRGB(0,     150,     0) or Color3.fromRGB(150,     0,     0)
 end)
 
 local distanceToggleLabel = Instance.new("TextLabel")
-distanceToggleLabel.Size = UDim2.new(0,    150,    0,    30)
-distanceToggleLabel.Position = UDim2.new(0,    0,    0,    120)
+distanceToggleLabel.Size = UDim2.new(0,     150,     0,     30)
+distanceToggleLabel.Position = UDim2.new(0,     0,     0,     120)
 distanceToggleLabel.BackgroundTransparency = 1
-distanceToggleLabel.Text = "Distance ESP:   "
-distanceToggleLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+distanceToggleLabel.Text = "Distance ESP:     "
+distanceToggleLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 distanceToggleLabel.TextSize = 14
 distanceToggleLabel.Font = Enum.Font.SourceSans
 distanceToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
 distanceToggleLabel.Parent = mainTab
 
 local distanceToggleButton = Instance.new("TextButton")
-distanceToggleButton.Size = UDim2.new(0,    80,    0,    30)
-distanceToggleButton.Position = UDim2.new(0,    160,    0,    120)
-distanceToggleButton.BackgroundColor3 = Color3.fromRGB(0,    150,    0)
+distanceToggleButton.Size = UDim2.new(0,     80,     0,     30)
+distanceToggleButton.Position = UDim2.new(0,     160,     0,     120)
+distanceToggleButton.BackgroundColor3 = Color3.fromRGB(0,     150,     0)
 distanceToggleButton.Text = "ON"
-distanceToggleButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+distanceToggleButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 distanceToggleButton.TextSize = 14
 distanceToggleButton.Font = Enum.Font.SourceSans
 
 local distanceToggleCorner = Instance.new("UICorner")
-distanceToggleCorner.CornerRadius = UDim.new(0,    5)
+distanceToggleCorner.CornerRadius = UDim.new(0,     5)
 distanceToggleCorner.Parent = distanceToggleButton
 
 local distanceToggleStroke = Instance.new("UIStroke")
-distanceToggleStroke.Color = Color3.fromRGB(100,    100,    100)
+distanceToggleStroke.Color = Color3.fromRGB(100,     100,     100)
 distanceToggleStroke.Thickness = 1
 distanceToggleStroke.Parent = distanceToggleButton
 
 distanceToggleButton.Parent = mainTab
 
-distanceToggleButton.MouseButton1Click:  Connect(function()
+distanceToggleButton.MouseButton1Click:   Connect(function()
     distanceESPEnabled = not distanceESPEnabled
     distanceToggleButton.Text = distanceESPEnabled and "ON" or "OFF"
-    distanceToggleButton.BackgroundColor3 = distanceESPEnabled and Color3.fromRGB(0,    150,    0) or Color3.fromRGB(150,    0,    0)
+    distanceToggleButton.BackgroundColor3 = distanceESPEnabled and Color3.fromRGB(0,     150,     0) or Color3.fromRGB(150,     0,     0)
 end)
 
 local hitboxLabel = Instance.new("TextLabel")
-hitboxLabel.Size = UDim2.new(0,    150,    0,    30)
-hitboxLabel.Position = UDim2.new(0,    0,    0,    160)
+hitboxLabel.Size = UDim2.new(0,     150,     0,     30)
+hitboxLabel.Position = UDim2.new(0,     0,     0,     160)
 hitboxLabel.BackgroundTransparency = 1
-hitboxLabel.Text = "Custom Hitbox:   "
-hitboxLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+hitboxLabel.Text = "Custom Hitbox:     "
+hitboxLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 hitboxLabel.TextSize = 14
 hitboxLabel.Font = Enum.Font.SourceSans
 hitboxLabel.TextXAlignment = Enum.TextXAlignment.Left
 hitboxLabel.Parent = mainTab
 
 local hitboxButton = Instance.new("TextButton")
-hitboxButton.Size = UDim2.new(0,    80,    0,    30)
-hitboxButton.Position = UDim2.new(0,    160,    0,    160)
-hitboxButton.BackgroundColor3 = Color3.fromRGB(150,    0,    0)
+hitboxButton.Size = UDim2.new(0,     80,     0,     30)
+hitboxButton.Position = UDim2.new(0,     160,     0,     160)
+hitboxButton.BackgroundColor3 = Color3.fromRGB(150,     0,     0)
 hitboxButton.Text = "OFF"
-hitboxButton.TextColor3 = Color3.fromRGB(255,    255,    255)
+hitboxButton.TextColor3 = Color3.fromRGB(255,     255,     255)
 hitboxButton.TextSize = 14
 hitboxButton.Font = Enum.Font.SourceSans
 
 local hitboxCorner = Instance.new("UICorner")
-hitboxCorner.CornerRadius = UDim.new(0,    5)
+hitboxCorner.CornerRadius = UDim.new(0,     5)
 hitboxCorner.Parent = hitboxButton
 
 local hitboxStroke = Instance.new("UIStroke")
-hitboxStroke.Color = Color3.fromRGB(100,    100,    100)
+hitboxStroke.Color = Color3.fromRGB(100,     100,     100)
 hitboxStroke.Thickness = 1
 hitboxStroke.Parent = hitboxButton
 
 hitboxButton.Parent = mainTab
 
-hitboxButton.MouseButton1Click:  Connect(function()
+hitboxButton.MouseButton1Click:   Connect(function()
     hitboxEnabled = not hitboxEnabled
     hitboxButton.Text = hitboxEnabled and "ON" or "OFF"
-    hitboxButton.BackgroundColor3 = hitboxEnabled and Color3.fromRGB(0,    150,    0) or Color3.fromRGB(150,    0,    0)
+    hitboxButton.BackgroundColor3 = hitboxEnabled and Color3.fromRGB(0,     150,     0) or Color3.fromRGB(150,     0,     0)
     
     if hitboxEnabled then
-        for _,    esp in pairs(espObjects) do
+        for _,     esp in pairs(espObjects) do
             esp.box.Size = hitboxSize
             esp.box.Transparency = hitboxTransparency
         end
     end
 end)
 
+local aimbotLabel = Instance.new("TextLabel")
+aimbotLabel.Size = UDim2.new(0,     150,     0,     30)
+aimbotLabel.Position = UDim2.new(0,     0,     0,     200)
+aimbotLabel.BackgroundTransparency = 1
+aimbotLabel.Text = "Aimbot:     "
+aimbotLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
+aimbotLabel.TextSize = 14
+aimbotLabel.Font = Enum.Font.SourceSans
+aimbotLabel.TextXAlignment = Enum.TextXAlignment.Left
+aimbotLabel.Parent = mainTab
+
+local aimbotButton = Instance.new("TextButton")
+aimbotButton.Size = UDim2.new(0,     80,     0,     30)
+aimbotButton.Position = UDim2.new(0,     160,     0,     200)
+aimbotButton.BackgroundColor3 = Color3.fromRGB(150,     0,     0)
+aimbotButton.Text = "OFF"
+aimbotButton.TextColor3 = Color3.fromRGB(255,     255,     255)
+aimbotButton.TextSize = 14
+aimbotButton.Font = Enum.Font.SourceSans
+
+local aimbotCorner = Instance.new("UICorner")
+aimbotCorner.CornerRadius = UDim.new(0,     5)
+aimbotCorner.Parent = aimbotButton
+
+local aimbotStroke = Instance.new("UIStroke")
+aimbotStroke.Color = Color3.fromRGB(100,     100,     100)
+aimbotStroke.Thickness = 1
+aimbotStroke.Parent = aimbotButton
+
+aimbotButton.Parent = mainTab
+
+aimbotButton.MouseButton1Click:   Connect(function()
+    aimbotEnabled = not aimbotEnabled
+    aimbotButton.Text = aimbotEnabled and "ON" or "OFF"
+    aimbotButton.BackgroundColor3 = aimbotEnabled and Color3.fromRGB(0,     150,     0) or Color3.fromRGB(150,     0,     0)
+end)
+
+local aimbotKeyLabel = Instance.new("TextLabel")
+aimbotKeyLabel.Size = UDim2.new(0,     150,     0,     30)
+aimbotKeyLabel.Position = UDim2.new(0,     0,     0,     240)
+aimbotKeyLabel.BackgroundTransparency = 1
+aimbotKeyLabel.Text = "Aim Key:  " .. aimbotKey.Name
+aimbotKeyLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
+aimbotKeyLabel.TextSize = 14
+aimbotKeyLabel.Font = Enum.Font.SourceSans
+aimbotKeyLabel.TextXAlignment = Enum.TextXAlignment.Left
+aimbotKeyLabel.Parent = mainTab
+
+local aimbotFOVLabel = Instance.new("TextLabel")
+aimbotFOVLabel.Size = UDim2.new(0,     100,     0,     30)
+aimbotFOVLabel.Position = UDim2.new(0,     0,     0,     280)
+aimbotFOVLabel.BackgroundTransparency = 1
+aimbotFOVLabel.Text = "FOV:     "
+aimbotFOVLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
+aimbotFOVLabel.TextSize = 14
+aimbotFOVLabel.Font = Enum.Font.SourceSans
+aimbotFOVLabel.TextXAlignment = Enum.TextXAlignment.Left
+aimbotFOVLabel.Parent = mainTab
+
+local aimbotFOVInput = Instance.new("TextBox")
+aimbotFOVInput.Size = UDim2.new(0,     80,     0,     30)
+aimbotFOVInput.Position = UDim2.new(0,     100,     0,     280)
+aimbotFOVInput.BackgroundColor3 = Color3.fromRGB(60,     60,     60)
+aimbotFOVInput.Text = tostring(aimbotFOV)
+aimbotFOVInput.TextColor3 = Color3.fromRGB(255,     255,     255)
+aimbotFOVInput.TextSize = 14
+aimbotFOVInput.Font = Enum.Font.SourceSans
+aimbotFOVInput.PlaceholderText = "Enter FOV"
+
+local aimbotFOVCorner = Instance.new("UICorner")
+aimbotFOVCorner.CornerRadius = UDim.new(0,     5)
+aimbotFOVCorner.Parent = aimbotFOVInput
+
+local aimbotFOVStroke = Instance.new("UIStroke")
+aimbotFOVStroke.Color = Color3.fromRGB(100,     100,     100)
+aimbotFOVStroke.Thickness = 1
+aimbotFOVStroke.Parent = aimbotFOVInput
+
+aimbotFOVInput.Parent = mainTab
+
+aimbotFOVInput.FocusLost:   Connect(function()
+    local value = tonumber(aimbotFOVInput.Text)
+    if value then
+        aimbotFOV = value
+    else
+        aimbotFOVInput.Text = tostring(aimbotFOV)
+    end
+end)
+
+local aimbotSmoothLabel = Instance.new("TextLabel")
+aimbotSmoothLabel.Size = UDim2.new(0,     100,     0,     30)
+aimbotSmoothLabel.Position = UDim2.new(0,     0,     0,     320)
+aimbotSmoothLabel.BackgroundTransparency = 1
+aimbotSmoothLabel.Text = "Smoothness:     "
+aimbotSmoothLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
+aimbotSmoothLabel.TextSize = 14
+aimbotSmoothLabel.Font = Enum.Font.SourceSans
+aimbotSmoothLabel.TextXAlignment = Enum.TextXAlignment.Left
+aimbotSmoothLabel.Parent = mainTab
+
+local aimbotSmoothInput = Instance.new("TextBox")
+aimbotSmoothInput.Size = UDim2.new(0,     80,     0,     30)
+aimbotSmoothInput.Position = UDim2.new(0,     100,     0,     320)
+aimbotSmoothInput.BackgroundColor3 = Color3.fromRGB(60,     60,     60)
+aimbotSmoothInput.Text = tostring(aimbotSmoothness)
+aimbotSmoothInput.TextColor3 = Color3.fromRGB(255,     255,     255)
+aimbotSmoothInput.TextSize = 14
+aimbotSmoothInput.Font = Enum.Font.SourceSans
+aimbotSmoothInput.PlaceholderText = "0.0 - 1.0"
+
+local aimbotSmoothCorner = Instance.new("UICorner")
+aimbotSmoothCorner.CornerRadius = UDim.new(0,     5)
+aimbotSmoothCorner.Parent = aimbotSmoothInput
+
+local aimbotSmoothStroke = Instance.new("UIStroke")
+aimbotSmoothStroke.Color = Color3.fromRGB(100,     100,     100)
+aimbotSmoothStroke.Thickness = 1
+aimbotSmoothStroke.Parent = aimbotSmoothInput
+
+aimbotSmoothInput.Parent = mainTab
+
+aimbotSmoothInput.FocusLost:   Connect(function()
+    local value = tonumber(aimbotSmoothInput.Text)
+    if value and value >= 0 and value <= 1 then
+        aimbotSmoothness = value
+    else
+        aimbotSmoothInput.Text = tostring(aimbotSmoothness)
+    end
+end)
+
 local hitboxXLabel = Instance.new("TextLabel")
-hitboxXLabel.Size = UDim2.new(0,    100,    0,    30)
-hitboxXLabel.Position = UDim2.new(0,    0,    0,    200)
+hitboxXLabel.Size = UDim2.new(0,     100,     0,     30)
+hitboxXLabel.Position = UDim2.new(0,     250,     0,     0)
 hitboxXLabel.BackgroundTransparency = 1
-hitboxXLabel.Text = "Size X:   "
-hitboxXLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+hitboxXLabel.Text = "Size X:     "
+hitboxXLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 hitboxXLabel.TextSize = 14
 hitboxXLabel.Font = Enum.Font.SourceSans
 hitboxXLabel.TextXAlignment = Enum.TextXAlignment.Left
 hitboxXLabel.Parent = mainTab
 
 local hitboxXInput = Instance.new("TextBox")
-hitboxXInput.Size = UDim2.new(0,    80,    0,    30)
-hitboxXInput.Position = UDim2.new(0,    100,    0,    200)
-hitboxXInput.BackgroundColor3 = Color3.fromRGB(60,    60,    60)
-hitboxXInput.TextColor3 = Color3.fromRGB(255,    255,    255)
+hitboxXInput.Size = UDim2.new(0,     80,     0,     30)
+hitboxXInput.Position = UDim2.new(0,     350,     0,     0)
+hitboxXInput.BackgroundColor3 = Color3.fromRGB(60,     60,     60)
 hitboxXInput.Text = tostring(hitboxSize.X)
+hitboxXInput.TextColor3 = Color3.fromRGB(255,     255,     255)
 hitboxXInput.TextSize = 14
 hitboxXInput.Font = Enum.Font.SourceSans
 hitboxXInput.PlaceholderText = "Enter X size"
 
-local hitboxXInputCorner = Instance.new("UICorner")
-hitboxXInputCorner.CornerRadius = UDim.new(0,    5)
-hitboxXInputCorner.Parent = hitboxXInput
+local hitboxXCorner = Instance.new("UICorner")
+hitboxXCorner.CornerRadius = UDim.new(0,     5)
+hitboxXCorner.Parent = hitboxXInput
 
-local hitboxXInputStroke = Instance.new("UIStroke")
-hitboxXInputStroke.Color = Color3.fromRGB(100,    100,    100)
-hitboxXInputStroke.Thickness = 1
-hitboxXInputStroke.Parent = hitboxXInput
+local hitboxXStroke = Instance.new("UIStroke")
+hitboxXStroke.Color = Color3.fromRGB(100,     100,     100)
+hitboxXStroke.Thickness = 1
+hitboxXStroke.Parent = hitboxXInput
 
 hitboxXInput.Parent = mainTab
 
-hitboxXInput.FocusLost:  Connect(function()
-    local num = tonumber(hitboxXInput.Text)
-    if num then
-        hitboxSize = Vector3.new(num,    hitboxSize.Y,    hitboxSize.Z)
+hitboxXInput.FocusLost:   Connect(function()
+    local value = tonumber(hitboxXInput.Text)
+    if value then
+        hitboxSize = Vector3.new(value,     hitboxSize.Y,     hitboxSize.Z)
         if hitboxEnabled then
-            for _,    esp in pairs(espObjects) do
+            for _,     esp in pairs(espObjects) do
                 esp.box.Size = hitboxSize
             end
         end
@@ -512,43 +706,43 @@ hitboxXInput.FocusLost:  Connect(function()
 end)
 
 local hitboxYLabel = Instance.new("TextLabel")
-hitboxYLabel.Size = UDim2.new(0,    100,    0,    30)
-hitboxYLabel.Position = UDim2.new(0,    0,    0,    240)
+hitboxYLabel.Size = UDim2.new(0,     100,     0,     30)
+hitboxYLabel.Position = UDim2.new(0,     250,     0,     40)
 hitboxYLabel.BackgroundTransparency = 1
-hitboxYLabel.Text = "Size Y:   "
-hitboxYLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+hitboxYLabel.Text = "Size Y:     "
+hitboxYLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 hitboxYLabel.TextSize = 14
 hitboxYLabel.Font = Enum.Font.SourceSans
 hitboxYLabel.TextXAlignment = Enum.TextXAlignment.Left
 hitboxYLabel.Parent = mainTab
 
 local hitboxYInput = Instance.new("TextBox")
-hitboxYInput.Size = UDim2.new(0,    80,    0,    30)
-hitboxYInput.Position = UDim2.new(0,    100,    0,    240)
-hitboxYInput.BackgroundColor3 = Color3.fromRGB(60,    60,    60)
-hitboxYInput.TextColor3 = Color3.fromRGB(255,    255,    255)
+hitboxYInput.Size = UDim2.new(0,     80,     0,     30)
+hitboxYInput.Position = UDim2.new(0,     350,     0,     40)
+hitboxYInput.BackgroundColor3 = Color3.fromRGB(60,     60,     60)
 hitboxYInput.Text = tostring(hitboxSize.Y)
+hitboxYInput.TextColor3 = Color3.fromRGB(255,     255,     255)
 hitboxYInput.TextSize = 14
 hitboxYInput.Font = Enum.Font.SourceSans
 hitboxYInput.PlaceholderText = "Enter Y size"
 
-local hitboxYInputCorner = Instance.new("UICorner")
-hitboxYInputCorner.CornerRadius = UDim.new(0,    5)
-hitboxYInputCorner.Parent = hitboxYInput
+local hitboxYCorner = Instance.new("UICorner")
+hitboxYCorner.CornerRadius = UDim.new(0,     5)
+hitboxYCorner.Parent = hitboxYInput
 
-local hitboxYInputStroke = Instance.new("UIStroke")
-hitboxYInputStroke.Color = Color3.fromRGB(100,    100,    100)
-hitboxYInputStroke.Thickness = 1
-hitboxYInputStroke.Parent = hitboxYInput
+local hitboxYStroke = Instance.new("UIStroke")
+hitboxYStroke.Color = Color3.fromRGB(100,     100,     100)
+hitboxYStroke.Thickness = 1
+hitboxYStroke.Parent = hitboxYInput
 
 hitboxYInput.Parent = mainTab
 
-hitboxYInput.FocusLost:  Connect(function()
-    local num = tonumber(hitboxYInput.Text)
-    if num then
-        hitboxSize = Vector3.new(hitboxSize.X,    num,    hitboxSize.Z)
+hitboxYInput.FocusLost:   Connect(function()
+    local value = tonumber(hitboxYInput.Text)
+    if value then
+        hitboxSize = Vector3.new(hitboxSize.X,     value,     hitboxSize.Z)
         if hitboxEnabled then
-            for _,    esp in pairs(espObjects) do
+            for _,     esp in pairs(espObjects) do
                 esp.box.Size = hitboxSize
             end
         end
@@ -558,43 +752,43 @@ hitboxYInput.FocusLost:  Connect(function()
 end)
 
 local hitboxZLabel = Instance.new("TextLabel")
-hitboxZLabel.Size = UDim2.new(0,    100,    0,    30)
-hitboxZLabel.Position = UDim2.new(0,    0,    0,    280)
+hitboxZLabel.Size = UDim2.new(0,     100,     0,     30)
+hitboxZLabel.Position = UDim2.new(0,     250,     0,     80)
 hitboxZLabel.BackgroundTransparency = 1
-hitboxZLabel.Text = "Size Z:   "
-hitboxZLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+hitboxZLabel.Text = "Size Z:     "
+hitboxZLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 hitboxZLabel.TextSize = 14
 hitboxZLabel.Font = Enum.Font.SourceSans
 hitboxZLabel.TextXAlignment = Enum.TextXAlignment.Left
 hitboxZLabel.Parent = mainTab
 
 local hitboxZInput = Instance.new("TextBox")
-hitboxZInput.Size = UDim2.new(0,    80,    0,    30)
-hitboxZInput.Position = UDim2.new(0,    100,    0,    280)
-hitboxZInput.BackgroundColor3 = Color3.fromRGB(60,    60,    60)
-hitboxZInput.TextColor3 = Color3.fromRGB(255,    255,    255)
+hitboxZInput.Size = UDim2.new(0,     80,     0,     30)
+hitboxZInput.Position = UDim2.new(0,     350,     0,     80)
+hitboxZInput.BackgroundColor3 = Color3.fromRGB(60,     60,     60)
 hitboxZInput.Text = tostring(hitboxSize.Z)
+hitboxZInput.TextColor3 = Color3.fromRGB(255,     255,     255)
 hitboxZInput.TextSize = 14
 hitboxZInput.Font = Enum.Font.SourceSans
 hitboxZInput.PlaceholderText = "Enter Z size"
 
-local hitboxZInputCorner = Instance.new("UICorner")
-hitboxZInputCorner.CornerRadius = UDim.new(0,    5)
-hitboxZInputCorner.Parent = hitboxZInput
+local hitboxZCorner = Instance.new("UICorner")
+hitboxZCorner.CornerRadius = UDim.new(0,     5)
+hitboxZCorner.Parent = hitboxZInput
 
-local hitboxZInputStroke = Instance.new("UIStroke")
-hitboxZInputStroke.Color = Color3.fromRGB(100,    100,    100)
-hitboxZInputStroke.Thickness = 1
-hitboxZInputStroke.Parent = hitboxZInput
+local hitboxZStroke = Instance.new("UIStroke")
+hitboxZStroke.Color = Color3.fromRGB(100,     100,     100)
+hitboxZStroke.Thickness = 1
+hitboxZStroke.Parent = hitboxZInput
 
 hitboxZInput.Parent = mainTab
 
-hitboxZInput.FocusLost:  Connect(function()
-    local num = tonumber(hitboxZInput.Text)
-    if num then
-        hitboxSize = Vector3.new(hitboxSize.X,    hitboxSize.Y,    num)
+hitboxZInput.FocusLost:   Connect(function()
+    local value = tonumber(hitboxZInput.Text)
+    if value then
+        hitboxSize = Vector3.new(hitboxSize.X,     hitboxSize.Y,     value)
         if hitboxEnabled then
-            for _,    esp in pairs(espObjects) do
+            for _,     esp in pairs(espObjects) do
                 esp.box.Size = hitboxSize
             end
         end
@@ -604,43 +798,43 @@ hitboxZInput.FocusLost:  Connect(function()
 end)
 
 local transparencyLabel = Instance.new("TextLabel")
-transparencyLabel.Size = UDim2.new(0,    100,    0,    30)
-transparencyLabel.Position = UDim2.new(0,    0,    0,    320)
+transparencyLabel.Size = UDim2.new(0,     100,     0,     30)
+transparencyLabel.Position = UDim2.new(0,     250,     0,     120)
 transparencyLabel.BackgroundTransparency = 1
-transparencyLabel.Text = "Transparency:   "
-transparencyLabel.TextColor3 = Color3.fromRGB(220,    220,    220)
+transparencyLabel.Text = "Transparency:     "
+transparencyLabel.TextColor3 = Color3.fromRGB(220,     220,     220)
 transparencyLabel.TextSize = 14
 transparencyLabel.Font = Enum.Font.SourceSans
 transparencyLabel.TextXAlignment = Enum.TextXAlignment.Left
 transparencyLabel.Parent = mainTab
 
 local transparencyInput = Instance.new("TextBox")
-transparencyInput.Size = UDim2.new(0,    80,    0,    30)
-transparencyInput.Position = UDim2.new(0,    100,    0,    320)
-transparencyInput.BackgroundColor3 = Color3.fromRGB(60,    60,    60)
-transparencyInput.TextColor3 = Color3.fromRGB(255,    255,    255)
+transparencyInput.Size = UDim2.new(0,     80,     0,     30)
+transparencyInput.Position = UDim2.new(0,     350,     0,     120)
+transparencyInput.BackgroundColor3 = Color3.fromRGB(60,     60,     60)
 transparencyInput.Text = tostring(hitboxTransparency)
+transparencyInput.TextColor3 = Color3.fromRGB(255,     255,     255)
 transparencyInput.TextSize = 14
 transparencyInput.Font = Enum.Font.SourceSans
 transparencyInput.PlaceholderText = "0.0 - 1.0"
 
-local transparencyInputCorner = Instance.new("UICorner")
-transparencyInputCorner.CornerRadius = UDim.new(0,    5)
-transparencyInputCorner.Parent = transparencyInput
+local transparencyCorner = Instance.new("UICorner")
+transparencyCorner.CornerRadius = UDim.new(0,     5)
+transparencyCorner.Parent = transparencyInput
 
-local transparencyInputStroke = Instance.new("UIStroke")
-transparencyInputStroke.Color = Color3.fromRGB(100,    100,    100)
-transparencyInputStroke.Thickness = 1
-transparencyInputStroke.Parent = transparencyInput
+local transparencyStroke = Instance.new("UIStroke")
+transparencyStroke.Color = Color3.fromRGB(100,     100,     100)
+transparencyStroke.Thickness = 1
+transparencyStroke.Parent = transparencyInput
 
 transparencyInput.Parent = mainTab
 
-transparencyInput.FocusLost:  Connect(function()
-    local num = tonumber(transparencyInput.Text)
-    if num and num >= 0 and num <= 1 then
-        hitboxTransparency = num
+transparencyInput.FocusLost:   Connect(function()
+    local value = tonumber(transparencyInput.Text)
+    if value and value >= 0 and value <= 1 then
+        hitboxTransparency = value
         if hitboxEnabled then
-            for _,    esp in pairs(espObjects) do
+            for _,     esp in pairs(espObjects) do
                 esp.box.Transparency = hitboxTransparency
             end
         end
@@ -650,34 +844,34 @@ transparencyInput.FocusLost:  Connect(function()
 end)
 
 local windowCorner = Instance.new("UICorner")
-windowCorner.CornerRadius = UDim.new(0,    8)
+windowCorner.CornerRadius = UDim.new(0,     8)
 windowCorner.Parent = windowFrame
 
 local windowStroke = Instance.new("UIStroke")
-windowStroke.Color = Color3.fromRGB(60,    60,    60)
+windowStroke.Color = Color3.fromRGB(60,     60,     60)
 windowStroke.Thickness = 2
 windowStroke.Parent = windowFrame
 
-tabs["Main"].button.BackgroundColor3 = Color3.fromRGB(90,    90,    90)
+tabs["Main"].button.BackgroundColor3 = Color3.fromRGB(90,     90,     90)
 tabs["Main"].content.Visible = true
 currentTab = "Main"
 
-game.Players.PlayerAdded:  Connect(function(player)
+game.Players.PlayerAdded:   Connect(function(player)
     if espEnabled then
         createESP(player)
     end
 end)
 
-game.Players.PlayerRemoving:  Connect(function(player)
+game.Players.PlayerRemoving:   Connect(function(player)
     removeESP(player)
 end)
 
-game:  GetService("RunService").RenderStepped:  Connect(function()
+game:   GetService("RunService").RenderStepped:   Connect(function()
     if espEnabled then
         updateESP()
     end
 end)
 
-for _,    player in ipairs(game.Players:  GetPlayers()) do
+for _,     player in ipairs(game.Players:   GetPlayers()) do
     createESP(player)
 end
